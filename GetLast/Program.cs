@@ -11,7 +11,15 @@ namespace GetLast
             try
             {
                 string ARG = args[0].ToUpper();
-                var AllFiles = Directory.GetFiles("./");
+                string[] AllFiles;
+                if (args.Length == 2)
+                {
+                    AllFiles = Directory.GetFiles(args[1]);
+                }
+                else
+                {
+                    AllFiles = Directory.GetFiles("./");
+                }
                 List<string> Validfiles = new List<string>();
                 foreach(var file in AllFiles)
                 {
@@ -35,7 +43,10 @@ namespace GetLast
             }
             catch
             {
-                Console.WriteLine("Args: GetLast <file extention>");
+                Console.WriteLine("Usage:");
+                Console.WriteLine("GetLast <file extention>");
+                Console.WriteLine("You can also optinally specify a path, EG:");
+                Console.WriteLine("GetLast <file extension> </path/that/exists>");
             }
         }
     }
